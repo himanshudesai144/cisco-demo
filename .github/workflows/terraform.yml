@@ -2,8 +2,13 @@ name: Deploy
 
 on:
   push:
-    branches:
-      - test
+    paths:
+      - 'terraform/**'
+    branches: [test]
+  pull_request:
+    paths:
+      - 'terraform/**'
+    branches: [test]
 
 jobs:
   Terraform:
@@ -30,9 +35,19 @@ jobs:
         AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         
-    - name: Terraform validate
+    - name: Terraform Validate
       run: terraform validate
 
+    - name: Terraform Plan
+      id: plan
+      run: terraform plan
+      working-directory: terraform
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # TF_ACTION_WORKING_DIR: '/terraform'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        
     - name: Terraform Apply
       id: apply
       working-directory: terraform

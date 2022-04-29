@@ -13,3 +13,8 @@ resource "aws_s3_bucket" "terraform_state" {
     enabled = true
   }
 }
+
+resource "aws_ecr_repository" "demo_ecr" {
+  name                 = "cisco_demo_ecr"
+  image_tag_mutability = "MUTABLE"
+}
