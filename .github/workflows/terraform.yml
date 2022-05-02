@@ -1,4 +1,4 @@
-name: Deploy
+name: Feature Terraform Workflow
 
 on:
   push:

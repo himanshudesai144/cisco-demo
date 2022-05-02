@@ -22,3 +22,8 @@ resource "aws_ecr_repository" "demo_ecr" {
 resource "aws_s3_bucket" "terraform_state2" {
   bucket = "cisco-test-bucket-7789-2"
 }
+
+resource "aws_ecr_repository" "demo_ecrs" {
+  name                 = "cisco_demo_ecrs"
+  image_tag_mutability = "MUTABLE"
+}
