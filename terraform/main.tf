@@ -27,3 +27,8 @@ resource "aws_ecr_repository" "demo_ecrs" {
   name                 = "cisco_demo_ecrs"
   image_tag_mutability = "MUTABLE"
 }
+
+
+resource "aws_iam_user" "lb" {
+  name = "demouser"
+}
