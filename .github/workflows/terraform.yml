@@ -47,7 +47,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         
   Deploy:
-    # Only deploy if executing against master
+    # Only deploy if executing against test
     if: ${{ github.ref == 'refs/heads/test' }}
     runs-on: ubuntu-latest
     needs: [Plan]
